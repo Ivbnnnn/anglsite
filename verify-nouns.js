@@ -69,17 +69,17 @@ nodes['nouns-exit'].handlers.click();
 selectedTypes = [];
 nodes['nouns-start'].handlers.click();
 assert.match(nodes['nouns-setup-message'].textContent, /Выбери/);
-const html = fs.readFileSync('nouns.html', 'utf8');
+const html = fs.readFileSync('noun-plurals.html', 'utf8');
 for (const id of ids) assert.ok(html.includes(`id="${id}"`), `Missing element ${id}`);
 for (const page of ['index.html', 'vocabulary.html', 'vocab-test.html', 'my-words.html', 'word-map.html']) {
   assert.match(fs.readFileSync(page, 'utf8'), /href="nouns.html"/);
 }
-for (const page of ['index.html', 'vocabulary.html', 'vocab-test.html', 'nouns.html', 'my-words.html', 'word-map.html']) {
+for (const page of ['index.html', 'vocabulary.html', 'vocab-test.html', 'nouns.html', 'noun-plurals.html', 'rise-arise.html', 'my-words.html', 'word-map.html']) {
   const source = fs.readFileSync(page, 'utf8');
   assert.match(source, /href="dark-theme.css"/);
   assert.match(source, /theme-color" content="#11121f"/);
 }
-for (const [page, button] of [['index.html', 'verb-order'], ['vocab-test.html', 'vocab-order'], ['nouns.html', 'nouns-order']]) {
+for (const [page, button] of [['index.html', 'verb-order'], ['vocab-test.html', 'vocab-order'], ['noun-plurals.html', 'nouns-order'], ['rise-arise.html', 'rise-order']]) {
   const source = fs.readFileSync(page, 'utf8');
   assert.match(source, /src="practice-order\.js"/);
   assert.match(source, /href="practice-order\.css"/);
@@ -87,4 +87,6 @@ for (const [page, button] of [['index.html', 'verb-order'], ['vocab-test.html', 
 }
 assert.match(fs.readFileSync('vocab-test.html', 'utf8'), /id="source-book"/);
 assert.match(fs.readFileSync('vocab-test.html', 'utf8'), /id="source-ielts"/);
+assert.match(fs.readFileSync('nouns.html', 'utf8'), /href="noun-plurals.html"/);
+assert.match(fs.readFileSync('nouns.html', 'utf8'), /href="rise-arise.html"/);
 console.log(`PASS: ${questions.length} noun questions, short and filtered sessions, typed answers, Enter, results, retry, dark theme links`);
