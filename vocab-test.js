@@ -1,5 +1,5 @@
 const $ = (id) => document.getElementById(id);
-const testState = { view: 'setup', selected: [], direction: 'ru-en', queue: [], index: 0, checked: false, answers: [] };
+const testState = { view: 'setup', selected: [], direction: 'ru-en', queue: [], studyQueue: [], random: false, index: 0, checked: false, answers: [] };
 
 function showView(view) {
   testState.view = view;
@@ -8,11 +8,23 @@ function showView(view) {
 function selectedTopics() {
   return [...document.querySelectorAll('.topic-option input:checked')].map((input) => input.value);
 }
+function selectedOrigins() {
+  return [
+    $('source-book').checked && 'core',
+    $('source-ielts').checked && 'advanced',
+  ].filter(Boolean);
+}
 function updateSelection() {
-  const count = selectedTopics().length;
-  $('selection-count').textContent = `${count} из ${vocabularyTopics.length} выбрано`;
+  const topics = selectedTopics();
+  const origins = selectedOrigins();
+  const count = buildQueue(topics, origins).length;
+  $('selection-count').textContent = `${topics.length} из ${vocabularyTopics.length} выбрано`;
   $('start-test').disabled = count === 0;
-  $('setup-note').textContent = count ? `${count * vocabularyTopics[0].words.length} выражений в одном сеансе.` : 'Выбери хотя бы одну тему.';
+  $('setup-note').textContent = !topics.length ? 'Выбери хотя бы одну тему.' : !origins.length ? 'Выбери хотя бы один источник.' : `${count} выражений в одном сеансе.`;
+  for (const label of $('topic-options').children) {
+    const topic = vocabularyTopics.find((item) => item.id === label.children[0].value);
+    label.children[1].children[1].textContent = `${topic.words.filter((word) => origins.includes(word.origin)).length} выражений`;
+  }
 }
 function renderOptions() {
   const params = new URLSearchParams(location.search);
@@ -53,14 +65,15 @@ function isCorrect(value, word, direction) {
   const answer = normalize(value, language);
   return answer.length > 0 && acceptedAnswers(word, direction).some((option) => normalize(option, language) === answer);
 }
-function buildQueue(topicIds) {
+function buildQueue(topicIds, origins = selectedOrigins()) {
   const selected = vocabularyTopics.filter((topic) => topicIds.includes(topic.id));
-  return selected.flatMap((topic) => topic.words.map((word) => ({ ...word, topic: topic.title })));
+  return selected.flatMap((topic) => topic.words.filter((word) => origins.includes(word.origin)).map((word) => ({ ...word, topic: topic.title })));
 }
 function begin(queue, direction, topicIds) {
   testState.selected = topicIds;
   testState.direction = direction;
-  testState.queue = queue;
+  testState.studyQueue = [...queue];
+  testState.queue = testState.random ? practiceOrder.reorder([...queue], 0, true, queue) : [...queue];
   testState.index = 0;
   testState.checked = false;
   testState.answers = [];
@@ -138,11 +151,21 @@ function showResults() {
 
 $('select-all').addEventListener('click', () => { for (const input of document.querySelectorAll('.topic-option input')) input.checked = true; updateSelection(); });
 $('clear-all').addEventListener('click', () => { for (const input of document.querySelectorAll('.topic-option input')) input.checked = false; updateSelection(); });
+$('source-book').addEventListener('change', updateSelection);
+$('source-ielts').addEventListener('change', updateSelection);
 $('start-test').addEventListener('click', () => {
   const topicIds = selectedTopics();
-  if (!topicIds.length) return;
+  if (!topicIds.length || !selectedOrigins().length) return;
   const direction = document.querySelector('input[name="direction"]:checked').value;
   begin(buildQueue(topicIds), direction, topicIds);
+});
+practiceOrder.updateButton($('vocab-order'), testState.random);
+$('vocab-order').addEventListener('click', () => {
+  testState.random = !testState.random;
+  const keepCurrent = testState.checked || $('quiz-answer').value.trim();
+  testState.queue = practiceOrder.reorder(testState.queue, testState.index + Number(Boolean(keepCurrent)), testState.random, testState.studyQueue);
+  practiceOrder.updateButton($('vocab-order'), testState.random);
+  if (!keepCurrent) renderQuestion();
 });
 $('quiz-form').addEventListener('submit', (event) => { event.preventDefault(); if (testState.checked) nextQuestion(); else checkAnswer(); });
 $('quiz-form').addEventListener('keydown', (event) => { if (event.key === 'Enter' && !event.isComposing && testState.checked) { event.preventDefault(); nextQuestion(); } });

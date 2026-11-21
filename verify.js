@@ -6,7 +6,7 @@ const assert = require('node:assert/strict');
 const ids = ['intro', 'practice', 'results', 'start-button', 'restart-button',
   'counter', 'progress-track', 'progress-fill', 'verb', 'translation', 'mark-button', 'correct-stat',
   'mistake-stat', 'v2', 'v3', 'v2-feedback', 'v3-feedback', 'action-button',
-  'form-hint', 'answer-form', 'result-correct', 'result-mistakes',
+  'form-hint', 'answer-form', 'verb-order', 'result-correct', 'result-mistakes',
   'result-percent', 'results-copy', 'review', 'review-list', 'unlearned',
   'open-unlearned', 'unlearned-count', 'add-unlearned-form', 'add-unlearned-input',
   'add-unlearned-message', 'unlearned-list', 'empty-list', 'back-button', 'verb-options'];
@@ -36,12 +36,18 @@ const context = vm.createContext({
 });
 vm.runInContext(fs.readFileSync('verbs.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('translations.js', 'utf8'), context);
+vm.runInContext(fs.readFileSync('practice-order.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('app.js', 'utf8'), context);
 const verbs = vm.runInContext('verbs', context);
 assert.equal(verbs.length, 164);
 assert.equal(new Set(verbs.map((verb) => verb.v1)).size, 164);
 assert.equal(new Set(verbs.map((verb) => verb.ru)).has(undefined), false);
 nodes['start-button'].listeners.click();
+assert.equal(nodes.verb.textContent, 'be');
+nodes['verb-order'].listeners.click();
+assert.equal(nodes['verb-order']['aria-pressed'], 'true');
+assert.equal(vm.runInContext('state.queue.some((item, index) => item !== verbs[index])', context), true);
+nodes['verb-order'].listeners.click();
 assert.equal(nodes.verb.textContent, 'be');
 assert.equal(nodes.translation.textContent, 'быть');
 nodes['mark-button'].listeners.click();
@@ -99,7 +105,7 @@ const reloadedContext = vm.createContext({
   document: { getElementById: (id) => reloadedNodes[id], createElement: element },
   window: { scrollTo() {} }, localStorage,
 });
-for (const file of ['verbs.js', 'translations.js', 'app.js']) {
+for (const file of ['verbs.js', 'translations.js', 'practice-order.js', 'app.js']) {
   vm.runInContext(fs.readFileSync(file, 'utf8'), reloadedContext);
 }
 assert.equal(reloadedNodes['unlearned-count'].textContent, 2);

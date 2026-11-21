@@ -20,10 +20,11 @@ function element() {
 const ids = ['nouns-start', 'nouns-setup', 'nouns-setup-message', 'nouns-results', 'nouns-quiz',
   'nouns-category', 'nouns-counter', 'nouns-progress', 'nouns-progress-fill', 'nouns-instruction',
   'nouns-before', 'nouns-after', 'nouns-answer', 'nouns-feedback', 'nouns-action', 'nouns-form',
-  'nouns-exit', 'nouns-new', 'nouns-retry', 'nouns-score', 'nouns-review', 'nouns-session-size', 'nouns-total'];
+  'nouns-exit', 'nouns-new', 'nouns-retry', 'nouns-score', 'nouns-review', 'nouns-session-size', 'nouns-total', 'nouns-order'];
 const nodes = Object.fromEntries(ids.map((id) => [id, element()]));
 nodes['nouns-session-size'].value = 'all';
 const context = vm.createContext({ document: { getElementById: (id) => nodes[id], createElement: element } });
+vm.runInContext(fs.readFileSync('practice-order.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('nouns.js', 'utf8'), context);
 const questions = vm.runInContext('nounQuestions', context);
 assert.ok(questions.length >= 120);
@@ -31,6 +32,11 @@ assert.equal(new Set(questions.map((q) => q.type)).size, 4);
 assert.equal(Number(nodes['nouns-total'].textContent), questions.length);
 nodes['nouns-start'].handlers.click();
 assert.equal(nodes['nouns-counter'].textContent, `1 / ${questions.length}`);
+nodes['nouns-order'].handlers.click();
+assert.equal(nodes['nouns-order']['aria-pressed'], 'true');
+assert.equal(vm.runInContext('nounSession.some((item, index) => item !== nounStudySession[index])', context), true);
+nodes['nouns-order'].handlers.click();
+assert.equal(nodes['nouns-before'].textContent, questions[0].before);
 const submit = () => nodes['nouns-form'].handlers.submit({ preventDefault() {} });
 submit();
 assert.match(nodes['nouns-feedback'].textContent, /Впиши ответ/);
@@ -73,4 +79,12 @@ for (const page of ['index.html', 'vocabulary.html', 'vocab-test.html', 'nouns.h
   assert.match(source, /href="dark-theme.css"/);
   assert.match(source, /theme-color" content="#11121f"/);
 }
+for (const [page, button] of [['index.html', 'verb-order'], ['vocab-test.html', 'vocab-order'], ['nouns.html', 'nouns-order']]) {
+  const source = fs.readFileSync(page, 'utf8');
+  assert.match(source, /src="practice-order\.js"/);
+  assert.match(source, /href="practice-order\.css"/);
+  assert.ok(source.includes(`id="${button}" type="button"`));
+}
+assert.match(fs.readFileSync('vocab-test.html', 'utf8'), /id="source-book"/);
+assert.match(fs.readFileSync('vocab-test.html', 'utf8'), /id="source-ielts"/);
 console.log(`PASS: ${questions.length} noun questions, short and filtered sessions, typed answers, Enter, results, retry, dark theme links`);

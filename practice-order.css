@@ -1,0 +1,9 @@
+.practice-actions { display:flex; align-items:stretch; gap:10px; flex-wrap:wrap; }
+.practice-actions .primary-button { flex:1; }
+.order-toggle { display:inline-grid; place-items:center; width:50px; min-height:46px; flex:none; border:1px solid #696481; border-radius:9px; background:#282a42; color:#cfc5ec; cursor:pointer; transition:background .15s,border-color .15s,color .15s; }
+.order-toggle:hover,.order-toggle:focus-visible { background:#383456; border-color:#b9a0f3; outline-color:#b9a0f3; }
+.order-toggle.is-random { background:#584483; border-color:#c0a6fb; color:#fff; }
+.order-toggle svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.source-options { display:flex; flex-wrap:wrap; gap:12px; margin:12px 0 24px; }
+.source-options label { display:flex; align-items:center; gap:9px; min-height:42px; padding:8px 14px; border:1px solid #58536f; border-radius:9px; background:#24253b; color:#eee9ff; font-size:13px; font-weight:700; cursor:pointer; }
+.source-options input { width:16px; height:16px; accent-color:#a88be9; }

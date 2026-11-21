@@ -10,7 +10,7 @@ function loadUnlearned() {
     return new Set();
   }
 }
-const state = { index: 0, checked: false, answers: [], view: 'intro', previousView: 'intro', unlearned: loadUnlearned() };
+const state = { index: 0, checked: false, answers: [], queue: [...verbs], random: false, view: 'intro', previousView: 'intro', unlearned: loadUnlearned() };
 const normalize = (value) => value.trim().toLowerCase().replace(/\s+/g, ' ');
 const accepts = (value, options) => options.some((option) => normalize(value) === normalize(option));
 
@@ -22,7 +22,7 @@ function show(section) {
 }
 
 function updateMarkButton() {
-  const marked = state.unlearned.has(verbs[state.index].v1);
+  const marked = state.unlearned.has(state.queue[state.index].v1);
   $('mark-button').textContent = marked ? '✓ В невыученных — убрать' : '＋ Добавить в невыученные';
   $('mark-button').setAttribute('aria-pressed', String(marked));
 }
@@ -75,12 +75,13 @@ function start() {
   state.index = 0;
   state.checked = false;
   state.answers = [];
+  state.queue = state.random ? practiceOrder.reorder([...verbs], 0, true, verbs) : [...verbs];
   show('practice');
   renderQuestion();
 }
 
 function renderQuestion() {
-  const item = verbs[state.index];
+  const item = state.queue[state.index];
   state.checked = false;
   $('verb').textContent = item.v1;
   $('verb').dataset.lookupTerm = item.v1;
@@ -104,7 +105,7 @@ function renderQuestion() {
 }
 
 function check() {
-  const item = verbs[state.index];
+  const item = state.queue[state.index];
   const v2 = $('v2').value;
   const v3 = $('v3').value;
   const v2Correct = accepts(v2, item.v2);
@@ -169,8 +170,16 @@ function showResults() {
 $('start-button').addEventListener('click', start);
 $('restart-button').addEventListener('click', start);
 $('mark-button').addEventListener('click', () => {
-  const v1 = verbs[state.index].v1;
+  const v1 = state.queue[state.index].v1;
   setUnlearned(v1, !state.unlearned.has(v1));
+});
+practiceOrder.updateButton($('verb-order'), state.random);
+$('verb-order').addEventListener('click', () => {
+  state.random = !state.random;
+  const keepCurrent = state.checked || $('v2').value.trim() || $('v3').value.trim();
+  state.queue = practiceOrder.reorder(state.queue, state.index + Number(Boolean(keepCurrent)), state.random, verbs);
+  practiceOrder.updateButton($('verb-order'), state.random);
+  if (!keepCurrent) renderQuestion();
 });
 $('open-unlearned').addEventListener('click', () => {
   if (state.view !== 'unlearned') state.previousView = state.view;

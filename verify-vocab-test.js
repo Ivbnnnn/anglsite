@@ -20,8 +20,10 @@ const ids = ['setup','quiz','test-results','selection-count','start-test','setup
   'quiz-topic','quiz-counter','quiz-progress-fill','quiz-answer','quiz-feedback',
   'quiz-action','quiz-form','test-correct','test-errors','test-accuracy',
   'test-result-copy','retry-errors','test-review','select-all','clear-all',
-  'quit-test','new-test'];
+  'quit-test','new-test','source-book','source-ielts','vocab-order'];
 const nodes = Object.fromEntries(ids.map((id) => [id, element()]));
+nodes['source-book'].checked = true;
+nodes['source-ielts'].checked = true;
 let direction = 'ru-en';
 const inputs = () => nodes['topic-options'].children.map((label) => label.children[0]);
 const document = {
@@ -37,10 +39,15 @@ const document = {
   },
 };
 const context = vm.createContext({ document, window: { scrollTo() {} }, location: { search: '?topics=city,health' }, URLSearchParams });
-for (const file of ['vocab-data.js','vocab-extra.js','vocab-test.js']) vm.runInContext(fs.readFileSync(file,'utf8'), context);
+for (const file of ['vocab-data.js','vocab-extra.js','practice-order.js','vocab-test.js']) vm.runInContext(fs.readFileSync(file,'utf8'), context);
 assert.equal(nodes['selection-count'].textContent, '2 из 12 выбрано');
 assert.equal(nodes['setup-note'].textContent, '100 выражений в одном сеансе.');
 nodes['start-test'].listeners.click();
+assert.equal(nodes['quiz-prompt'].textContent, 'городской образ жизни');
+nodes['vocab-order'].listeners.click();
+assert.equal(nodes['vocab-order']['aria-pressed'], 'true');
+assert.equal(vm.runInContext('testState.queue.some((item, index) => item !== testState.studyQueue[index])', context), true);
+nodes['vocab-order'].listeners.click();
 assert.equal(nodes['quiz-prompt'].textContent, 'городской образ жизни');
 const queue = vm.runInContext('testState.queue', context);
 assert.equal(queue.length, 100);
@@ -68,6 +75,24 @@ submit(); enter();
 assert.equal(nodes['test-errors'].textContent, 0);
 
 nodes['new-test'].listeners.click();
+nodes['source-ielts'].checked = false;
+nodes['source-ielts'].listeners.change();
+const bookCount = vm.runInContext("vocabularyTopics.find((topic) => topic.id === 'city').words.filter((word) => word.origin === 'core').length", context);
+assert.equal(nodes['setup-note'].textContent, `${bookCount * 2} выражений в одном сеансе.`);
+assert.equal(vm.runInContext("buildQueue(['city', 'health']).every((word) => word.origin === 'core')", context), true);
+nodes['source-ielts'].checked = true;
+nodes['source-book'].checked = false;
+nodes['source-book'].listeners.change();
+const ieltsCount = vm.runInContext("vocabularyTopics.find((topic) => topic.id === 'city').words.filter((word) => word.origin === 'advanced').length", context);
+assert.equal(nodes['setup-note'].textContent, `${ieltsCount * 2} выражений в одном сеансе.`);
+assert.equal(vm.runInContext("buildQueue(['city', 'health']).every((word) => word.origin === 'advanced')", context), true);
+nodes['source-ielts'].checked = false;
+nodes['source-ielts'].listeners.change();
+assert.equal(nodes['start-test'].disabled, true);
+assert.equal(nodes['setup-note'].textContent, 'Выбери хотя бы один источник.');
+nodes['source-ielts'].checked = true;
+nodes['source-book'].checked = true;
+nodes['source-book'].listeners.change();
 direction = 'en-ru';
 for (const input of inputs()) input.checked = input.value === 'city';
 nodes['start-test'].listeners.click();

@@ -149,13 +149,16 @@ nounQuestions.push(
 const nounEl = (id) => document.getElementById(id);
 const nounTypeNames = { agreement: 'СОГЛАСОВАНИЕ', forms: 'ФОРМА СУЩЕСТВИТЕЛЬНОГО', usage: 'УПОТРЕБЛЕНИЕ', quantifiers: 'КОЛИЧЕСТВО' };
 let nounSession = [];
+let nounStudySession = [];
+let nounRandom = false;
 let nounIndex = 0;
 let nounChecked = false;
 let nounAnswers = [];
 
 function nounNormalize(value) { return value.trim().toLocaleLowerCase('en').replace(/\s+/g, ' ').replace(/[’]/g, "'"); }
 function nounStart(questions) {
-  nounSession = questions;
+  nounStudySession = nounQuestions.filter((question) => questions.includes(question));
+  nounSession = nounRandom ? practiceOrder.reorder([...nounStudySession], 0, true, nounStudySession) : [...nounStudySession];
   nounIndex = 0;
   nounChecked = false;
   nounAnswers = [];
@@ -234,13 +237,16 @@ nounEl('nouns-start').addEventListener('click', () => {
   nounEl('nouns-setup-message').textContent = '';
   const pool = nounQuestions.filter((q) => selected.includes(q.type));
   const size = nounEl('nouns-session-size').value;
-  if (size === 'all') { nounStart(pool); return; }
-  const shuffled = [...pool];
-  for (let index = shuffled.length - 1; index > 0; index--) {
-    const other = Math.floor(Math.random() * (index + 1));
-    [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
-  }
-  nounStart(shuffled.slice(0, Number(size)));
+  const ordered = nounRandom ? practiceOrder.reorder([...pool], 0, true, pool) : pool;
+  nounStart(size === 'all' ? ordered : ordered.slice(0, Number(size)));
+});
+practiceOrder.updateButton(nounEl('nouns-order'), nounRandom);
+nounEl('nouns-order').addEventListener('click', () => {
+  nounRandom = !nounRandom;
+  const keepCurrent = nounChecked || nounEl('nouns-answer').value.trim();
+  nounSession = practiceOrder.reorder(nounSession, nounIndex + Number(Boolean(keepCurrent)), nounRandom, nounStudySession);
+  practiceOrder.updateButton(nounEl('nouns-order'), nounRandom);
+  if (!keepCurrent) nounRender();
 });
 nounEl('nouns-form').addEventListener('submit', nounSubmit);
 nounEl('nouns-exit').addEventListener('click', nounReset);

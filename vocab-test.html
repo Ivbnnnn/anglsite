@@ -8,8 +8,10 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="vocab-test.css">
   <link rel="stylesheet" href="dark-theme.css">
+  <link rel="stylesheet" href="practice-order.css">
   <script defer src="vocab-data.js"></script>
   <script defer src="vocab-extra.js"></script>
+  <script defer src="practice-order.js"></script>
   <script defer src="vocab-test.js"></script>
 </head>
 <body>
@@ -23,6 +25,8 @@
         <div class="setup-heading"><div><span>ШАГ 01</span><h2>Выбери темы</h2></div><span id="selection-count">0 выбрано</span></div>
         <div class="selection-actions"><button id="select-all" type="button">Выбрать все</button><button id="clear-all" type="button">Снять выбор</button></div>
         <div id="topic-options" class="topic-options"></div>
+        <div class="setup-heading mode-heading"><div><span>ИСТОЧНИК</span><h2>Какие выражения проверять</h2></div></div>
+        <div class="source-options"><label><input id="source-book" type="checkbox" checked> По пособию</label><label><input id="source-ielts" type="checkbox" checked> IELTS+</label></div>
         <div class="setup-heading mode-heading"><div><span>ШАГ 02</span><h2>Направление</h2></div></div>
         <div class="mode-options"><label><input type="radio" name="direction" value="ru-en" checked><span><strong>RU → EN</strong><small>Напиши слово или фразу по-английски</small></span></label><label><input type="radio" name="direction" value="en-ru"><span><strong>EN → RU</strong><small>Напиши перевод по-русски</small></span></label></div>
         <div class="start-line"><button class="primary-button" id="start-test" type="button" disabled>Начать проверку <span aria-hidden="true">→</span></button><p id="setup-note">Выбери хотя бы одну тему.</p></div>
@@ -32,7 +36,7 @@
     <section id="quiz" class="test-quiz hidden" aria-label="Проверка знаний">
       <div class="section-topline"><span id="quiz-topic">VOCABULARY PRACTICE</span><span id="quiz-counter">01 / 50</span></div>
       <div class="progress-track" id="quiz-progress" role="progressbar" aria-label="Прогресс" aria-valuemin="0" aria-valuenow="0"><div id="quiz-progress-fill"></div></div>
-      <div class="quiz-layout"><div class="quiz-prompt-card"><span class="quiz-direction" id="quiz-direction"></span><div class="quiz-prompt" id="quiz-prompt"></div><div class="quiz-topic-name" id="quiz-topic-name"></div><p>Напиши перевод в поле справа.</p></div><div class="quiz-answer-card"><form id="quiz-form" novalidate><label for="quiz-answer" id="quiz-answer-label">Твой ответ</label><input id="quiz-answer" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Введи перевод"><div class="quiz-feedback" id="quiz-feedback" aria-live="polite"></div><button class="primary-button action-button" id="quiz-action" type="submit">Проверить <span aria-hidden="true">→</span></button><p class="form-hint">Enter проверяет ответ и переводит к следующему выражению.</p></form></div></div>
+      <div class="quiz-layout"><div class="quiz-prompt-card"><span class="quiz-direction" id="quiz-direction"></span><div class="quiz-prompt" id="quiz-prompt"></div><div class="quiz-topic-name" id="quiz-topic-name"></div><p>Напиши перевод в поле справа.</p></div><div class="quiz-answer-card"><form id="quiz-form" novalidate><label for="quiz-answer" id="quiz-answer-label">Твой ответ</label><input id="quiz-answer" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Введи перевод"><div class="quiz-feedback" id="quiz-feedback" aria-live="polite"></div><div class="practice-actions"><button class="primary-button action-button" id="quiz-action" type="submit">Проверить <span aria-hidden="true">→</span></button><button class="order-toggle" id="vocab-order" type="button" title="Порядок как в изучении" aria-label="Порядок как в изучении" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h3c5 0 7 14 12 14h3m-3-3 3 3-3 3M3 19h3c5 0 7-14 12-14h3m-3-3 3 3-3 3"/></svg></button></div><p class="form-hint">Enter проверяет ответ и переводит к следующему выражению.</p></form></div></div>
       <button class="quit-test" id="quit-test" type="button">← К выбору тем</button>
     </section>
 

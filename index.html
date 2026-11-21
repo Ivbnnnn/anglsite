@@ -7,8 +7,10 @@
   <title>164 неправильных глагола — тренажёр</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="dark-theme.css">
+  <link rel="stylesheet" href="practice-order.css">
   <script defer src="verbs.js"></script>
   <script defer src="translations.js"></script>
+  <script defer src="practice-order.js"></script>
   <script defer src="app.js"></script>
   <script defer src="dictionary.js"></script>
 </head>
@@ -65,7 +67,7 @@
               <input id="v3" name="v3" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Например, gone">
               <div class="feedback" id="v3-feedback" aria-live="polite"></div>
             </div>
-            <button class="primary-button action-button" id="action-button" type="submit">Проверить <span aria-hidden="true">→</span></button>
+            <div class="practice-actions"><button class="primary-button action-button" id="action-button" type="submit">Проверить <span aria-hidden="true">→</span></button><button class="order-toggle" id="verb-order" type="button" title="Порядок как в изучении" aria-label="Порядок как в изучении" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h3c5 0 7 14 12 14h3m-3-3 3 3-3 3M3 19h3c5 0 7-14 12-14h3m-3-3 3 3-3 3"/></svg></button></div>
             <p class="form-hint" id="form-hint">Нажми Enter, даже если курсор находится в поле ввода.</p>
           </form>
         </div>
