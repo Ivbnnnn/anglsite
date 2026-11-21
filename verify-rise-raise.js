@@ -1,4 +1,4 @@
-// Run with: node verify-rise-arise.js
+// Run with: node verify-rise-raise.js
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
@@ -22,11 +22,11 @@ const ids = ['rise-practice','rise-intro','rise-quiz','rise-results','rise-start
 const nodes = Object.fromEntries(ids.map((id) => [id, element()]));
 const context = vm.createContext({ document: { getElementById: (id) => nodes[id], createElement: element } });
 vm.runInContext(fs.readFileSync('practice-order.js', 'utf8'), context);
-vm.runInContext(fs.readFileSync('rise-arise.js', 'utf8'), context);
+vm.runInContext(fs.readFileSync('rise-raise.js', 'utf8'), context);
 const questions = vm.runInContext('riseQuestions', context);
 assert.equal(questions.length, 30);
 assert.equal(new Set(questions.map((q) => `${q.before}|${q.after}`)).size, 30);
-assert.ok(questions.every((q) => ['rise','rises','rose','risen','rising','arise','arises','arose','arisen','arising'].includes(q.answer)));
+assert.ok(questions.every((q) => ['rise','rises','rose','risen','rising','raise','raises','raised','raising'].includes(q.answer)));
 nodes['rise-start'].listeners.click();
 assert.equal(nodes['rise-counter'].textContent, '1 / 30');
 nodes['rise-order'].listeners.click();
@@ -52,5 +52,5 @@ nodes['rise-answer'].value = questions[0].answer;
 submit(); submit();
 assert.match(nodes['rise-result-score'].textContent, /1 из 1 верно/);
 assert.equal(nodes['rise-retry'].classes.has('hidden'), true);
-assert.match(fs.readFileSync('rise-arise.html', 'utf8'), /href="nouns.html"/);
-console.log('PASS: 30 rise/arise exercises, forms, order toggle, Enter, results, retry');
+assert.match(fs.readFileSync('rise-raise.html', 'utf8'), /href="nouns.html"/);
+console.log('PASS: 30 rise/raise exercises, forms, order toggle, Enter, results, retry');
