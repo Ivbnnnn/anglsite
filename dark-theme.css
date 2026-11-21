@@ -1,0 +1,98 @@
+:root{color-scheme:dark;--bg:#11121f;--surface:#1d1e31;--surface-2:#282a42;--surface-3:#343650;--border:#4a4b68;--text:#f1efff;--muted:#c0bdd5;--dim:#9e9bb9;--accent:#cab5ff;--link:#d1c0ff;--error:#ffaaa6;background:var(--bg);color:var(--text)}
+body{background:var(--bg);color:var(--text)}
+::selection{background:#6b58aa;color:#fff}
+.site-header{background:#18192b;border-color:var(--border)}
+.brand,.intro h1,.results h2,.vocab-hero h1,.test-setup h1,.test-results h2,.own-hero h1,.map-heading h1,.nouns-hero h1,.nouns-heading h2,.theory-chapter h3{color:var(--text)}
+.brand-mark,.primary-button,.topic-test-link{background:#6d57bd;color:#fff}
+.brand-mark span{color:#ffd0b8}
+.primary-button:hover,.topic-test-link:hover{background:#806bd0}
+.main-nav a{color:#c9c6df}
+.main-nav a:hover,.main-nav a[aria-current="page"]{background:#343354;color:#f1eaff}
+.eyebrow,.section-topline,.question-label,.answer-heading,.topic-kicker,.rule-number,.chapter-index{color:var(--accent)}
+.eyebrow-dot{background:#e8a2c0}
+.intro h1 em,.results h2 em,.vocab-hero h1 em,.test-setup h1 em,.test-results h2 em,.own-hero h1 em,.map-heading h1 em,.nouns-hero h1 em{color:#d3b8ff}
+.intro-copy,.results-copy,.vocab-hero>p,.test-lead,.own-hero p,.map-heading p,.nouns-hero>p,.nouns-heading>p,.theory-chapter p{color:var(--muted)}
+.feature-row,.feature-row>div+div,.footer,.nouns-hero,.nouns-practice,.vocab-hero{border-color:var(--border)}
+.feature-row strong,.catalog-heading h2,.setup-heading h2,.own-editor h2,.own-collection h2,.unlearned h2{color:var(--text)}
+.feature-row span,.keyboard-hint,.footer,.catalog-heading span,.topic-en,.topic-number,.word-example,.map-hint{color:var(--dim)}
+.keyboard-hint kbd,.dictionary-hint kbd{background:var(--surface-2);color:var(--text);border-color:var(--border);box-shadow:none}
+.footer a,.collection-heading a,.map-detail a,.map-empty a{color:var(--link)}
+
+/* Shared panels, cards and controls. */
+.question-panel,.quiz-prompt-card,.topic-detail-header{background:var(--surface-2)}
+.answer-panel,.setup-panel,.quiz-answer-card,.test-result-cards>div,.test-review-row,.topic-card,.topic-search,.topic-filters button.active,.word-row,.no-words,.own-editor,.own-collection,.own-row,.map-detail,.nouns-setup,.nouns-results,.nouns-question,.rule-card,.grammar-table,.review-row,.results-cards>div,.add-unlearned-form,.unlearned-row,.empty-list,.dictionary-toast{background:var(--surface);border-color:var(--border);box-shadow:none}
+.topic-option,.mode-options label,.own-row,.word-row,.nouns-review article{border-color:var(--border)}
+.topic-option:has(input:checked),.mode-options label:has(input:checked){background:#393451;border-color:#9b83df}
+.topic-filters,.speaking-prompt,.vocab-callout,.map-entry,.nouns-note,.rule-example,.example-line,.nouns-review article,.own-empty,.theory-contents a{background:var(--surface-2);border-color:var(--border)}
+.topic-filters button,.reveal-button,.secondary-button,.nouns-outline,.list-link,.back-button,.mark-button,.suggest-row button,.own-row-actions button,.close-topic,.selection-actions button{background:var(--surface-2);border-color:var(--border);color:var(--link)}
+.topic-filters button.active{color:var(--accent)}
+.secondary-button:hover,.nouns-outline:hover,.list-link:hover,.back-button:hover,.mark-button:hover,.suggest-row button:hover,.theory-contents a:hover{background:var(--surface-3)}
+.remove-button,.own-row-actions button:last-child{background:#442c37;border-color:#835364;color:#ffb0ac}
+.word-tag{background:var(--surface-2);color:#c2b9e6}
+.word-tag.advanced{background:#443548;color:#f0bba8}
+.word-term,.word-row strong,.word-content strong,.topic-card strong,.topic-detail h2,.quiz-prompt,.test-result-cards strong,.test-review-row strong,.own-row strong,.map-detail h2,.rule-card h3,.rule-card i,.theory-chapter i,.grammar-table td:first-child,.nouns-results h3,.nouns-review strong,.vocab-metrics strong,.results-cards strong,.review-row strong,.unlearned-row strong,.vocab-callout strong,.speaking-prompt p{color:#ece8ff}
+.word-translation,.word-row span,.topic-detail-header p,.quiz-topic-name,.test-results>p,.test-review-row span,.own-row span,.map-detail p,.rule-card p,.nouns-results>p,.nouns-review p,.nouns-note,.rule-example,.example-line small,.grammar-table td,.speaking-prompt small{color:var(--muted)}
+.word-example{color:#dcb8c4}
+.rule-example strong,.example-line strong{color:#e3d7ff}
+.example-line>span{color:#ffaaa6}
+.vocab-callout span,.theory-contents a,.nouns-outline{color:var(--link)}
+.dictionary-toast strong,.dictionary-actions a,.map-entry{color:#e3d7ff}
+.dictionary-actions a{background:var(--surface-2)}
+.dictionary-actions a:first-child{background:#6d57bd;color:#fff}
+.dictionary-toast p,.dictionary-toast button,.dictionary-hint,.form-hint,.field-note{color:var(--muted)}
+.progress-track{background:#34354c}.progress-track>div{background:#b69af3}
+.review-row span,.review-row small,.results-cards span,.test-result-cards span,.nouns-feedback,.form-message,.suggest-status{color:var(--muted)}
+
+/* Inputs and their answer states. */
+input,select,textarea{color:var(--text)}
+input::placeholder,textarea::placeholder{color:#9795b3}
+.input-group input,.quiz-answer-card input,.own-editor input,.own-editor select,.collection-filters input,.collection-filters select,.map-toolbar input,.map-toolbar select,.add-unlearned-form input,.nouns-setup select,.nouns-sentence input{background:#171829;border-color:var(--border);color:var(--text)}
+.input-group input:focus,.quiz-answer-card input:focus,.own-editor input:focus,.collection-filters input:focus,.map-toolbar input:focus,.nouns-sentence input:focus{background:#252641;border-color:#a58ae6;box-shadow:0 0 0 3px #9e80e033}
+.input-group input.is-correct,.quiz-answer-card input.is-correct,.nouns-sentence input.is-correct{background:#373457;border-color:#b19af3;color:#f1ecff}
+.input-group input.is-wrong,.quiz-answer-card input.is-wrong,.nouns-sentence input.is-wrong{background:#4b2e3e;border-color:#e3948e;color:#fff0ef}
+.feedback.correct,.quiz-feedback.correct,.nouns-feedback.correct{color:#d4bdff}
+.feedback.wrong,.quiz-feedback.wrong,.nouns-feedback.wrong,.list-message{color:var(--error)}
+.topic-search input{background:transparent;color:var(--text)}
+
+/* Noun theory tables. */
+.grammar-table th{background:#373352;color:#e6daff}
+.grammar-table th,.grammar-table td{border-color:var(--border)}
+.nouns-setup label,.nouns-setup legend,.nouns-setup .session-size-label,.quiz-answer-card label,.own-editor label{color:var(--text)}
+.nouns-sentence,.nouns-instruction{color:#eee7ff}
+.nouns-sentence input{border-bottom-color:#bba4f5}
+
+/* Vocabulary, personal words and mind map. */
+.topic-card{color:#e4dcff}
+.topic-card:hover{border-color:#a18bd8;box-shadow:0 10px 25px #0003}
+.topic-count,.topic-icon,.topic-test-link,.collection-heading h2 span{color:#d4c2ff}
+.topic-test-link{color:#fff}
+.topic-search,.reveal-button,.word-tag,.speaking-prompt,.map-entry,.own-empty{border-color:var(--border)}
+.own-row small,.own-count,.collection-heading h2 span,.map-toolbar span{color:var(--dim)}
+.map-frame{background-color:#171829;background-image:radial-gradient(#383854 1px,transparent 1px);border-color:var(--border)}
+.map-edges path{stroke:#777299}.map-edges .word-line{stroke:#565371}
+.center-node rect{fill:#775dc4}.center-node text{fill:#fff}
+.branch-node rect{fill:#3c365d;stroke:#756ba5}.branch-node text{fill:#e9dfff}
+.word-node rect{fill:#252640;stroke:#5a587f}.word-node:hover rect,.word-node:focus rect{fill:#44406c;stroke:#ab93eb}.word-node text{fill:#eee9ff}
+
+/* Text that previously relied on pale card backgrounds. */
+.verb,.translation,.question-caption,.mini-stats,.input-group label,.topic-option strong,.mode-options strong,.vocab-metrics,.setup-heading>span,.topic-en,.topic-detail-header p,.quiz-prompt-card p,.quiz-answer-card label,.own-editor label,.unlearned-copy,.unlearned-row span,.unlearned-row small,.nouns-setup legend,.nouns-setup label,.nouns-instruction{color:var(--text)}
+.question-caption,.mini-stats,.vocab-metrics,.setup-heading>span,.topic-en,.topic-detail-header p,.quiz-prompt-card p,.unlearned-copy,.unlearned-row span,.unlearned-row small{color:var(--muted)}
+.verb,.translation{color:#e3d7ff}
+.answer-heading-icon,.topic-icon,.topic-number{color:#d4c2ff}
+.word-example,.speaking-prompt span{color:#e6b5c4}
+.topic-option small,.mode-options small,.collection-heading h2 span,.topic-count,.own-row small,.word-tag{color:var(--dim)}
+.test-review-row small,.test-review-row span,.rule-card p,.nouns-review p{color:var(--muted)}
+.test-review-row span:last-child{color:#ffaaa6}
+.review-row small,.review-row span,.review>p,.unlearned-copy,.own-hero p,.map-heading p{color:var(--muted)}
+.primary-button:focus-visible,.brand:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible{outline-color:#dbc7ff}
+.unlearned h2 em{color:#d3b8ff}.list-link span{background:#423d66;color:#f1eaff}.nouns-setup p{color:var(--error)}
+
+/* Keep native controls and small actions in the same palette. */
+input[type="checkbox"],input[type="radio"]{accent-color:#a88be9}
+.quiz-answer-card input:focus,.own-editor input:focus,.own-editor select:focus,.collection-filters input:focus,.collection-filters select:focus{outline-color:#bfa8f4}
+.add-unlearned-form button{background:#6d57bd;color:#fff}
+.add-unlearned-form button:hover{background:#806bd0}
+.topic-search span,.collection-heading a,.speaking-prompt span,.vocab-callout small{color:var(--link)}
+.question-label span,.word-tag,.dictionary-hint kbd{border-color:var(--border)}
+.header-label,.header-dot,.separator,.start-line p,.quiz-direction,.quit-test{color:var(--muted)}
+.lookup-term:hover{text-decoration-color:#b69af3}

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11121f">
+  <title>164 неправильных глагола — тренажёр</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dark-theme.css">
+  <script defer src="verbs.js"></script>
+  <script defer src="translations.js"></script>
+  <script defer src="app.js"></script>
+  <script defer src="dictionary.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="index.html" aria-label="Verb Practice — главная"><span class="brand-mark">v<span>.</span></span><span>verb practice</span></a>
+      <div class="header-actions"><nav class="main-nav" aria-label="Разделы сайта"><a href="index.html" aria-current="page">Глаголы</a><a href="vocabulary.html">Vocabulary</a><a href="vocab-test.html">Проверка</a><a href="nouns.html">Теория</a><a href="my-words.html">Мои слова</a><a href="word-map.html">Карта</a></nav><button class="list-link" id="open-unlearned" type="button">Невыученные <span id="unlearned-count">0</span></button></div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro" id="intro">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> ПЕЧАТАЙ · ПРОВЕРЯЙ · ЗАПОМИНАЙ</div>
+      <h1>Неправильные<br><em>глаголы</em> без пауз.</h1>
+      <p class="intro-copy">Все 164 глагола подряд в одном сеансе. Видишь первую форму, вписываешь вторую и третью — и сразу узнаёшь результат.</p>
+      <div class="intro-actions">
+        <button class="primary-button" id="start-button" type="button">Начать тренировку <span aria-hidden="true">↗</span></button>
+        <span class="keyboard-hint"><kbd>Enter</kbd> для проверки и перехода</span>
+      </div>
+      <a class="vocab-callout" href="vocabulary.html"><span>НОВЫЙ РАЗДЕЛ</span><strong>Vocabulary по 12 темам →</strong><small>Лексика из пособия + расширение для IELTS</small></a>
+      <a class="vocab-callout" href="my-words.html"><span>ЛИЧНЫЙ СЛОВАРЬ</span><strong>Записывай свои слова →</strong><small>Предложение перевода и карта тематических ветвей</small></a>
+      <a class="vocab-callout" href="nouns.html"><span>ТЕОРИЯ И ПРАКТИКА</span><strong>Число существительных →</strong><small>Scissors are, a pair of scissors is и другие случаи</small></a>
+      <div class="feature-row">
+        <div><strong>164</strong><span>глагола подряд</span></div>
+        <div><strong>V2 + V3</strong><span>проверка обеих форм</span></div>
+        <div><strong>1 сеанс</strong><span>без раундов по 10</span></div>
+      </div>
+    </section>
+
+    <section class="practice hidden" id="practice" aria-label="Тренировка">
+      <div class="section-topline"><span>ТВОЯ ТРЕНИРОВКА</span><span id="counter">01 / 164</span></div>
+      <div class="progress-track" role="progressbar" aria-label="Прогресс" aria-valuemin="0" aria-valuemax="164" aria-valuenow="0" id="progress-track"><div id="progress-fill"></div></div>
+      <div class="practice-grid">
+        <div class="question-panel">
+          <div class="question-label">БАЗОВАЯ ФОРМА <span>V1</span></div>
+          <div class="verb lookup-term" id="verb" title="Нажми для словаря или Ctrl + клик для English definition"></div>
+          <div class="translation" id="translation"></div>
+          <p class="question-caption">Вспомни две остальные формы этого глагола.</p>
+          <button class="mark-button" id="mark-button" type="button" aria-pressed="false">＋ Добавить в невыученные</button>
+          <div class="mini-stats"><span id="correct-stat">0 верно</span><span class="separator">·</span><span id="mistake-stat">0 с ошибкой</span></div>
+        </div>
+
+        <div class="answer-panel">
+          <form id="answer-form" novalidate>
+            <div class="answer-heading"><span>ВПИШИ ФОРМЫ</span><span class="answer-heading-icon" aria-hidden="true">✳</span></div>
+            <div class="input-group">
+              <label for="v2">Past Simple <span>V2</span></label>
+              <input id="v2" name="v2" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Например, went">
+              <div class="feedback" id="v2-feedback" aria-live="polite"></div>
+            </div>
+            <div class="input-group">
+              <label for="v3">Past Participle <span>V3</span></label>
+              <input id="v3" name="v3" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Например, gone">
+              <div class="feedback" id="v3-feedback" aria-live="polite"></div>
+            </div>
+            <button class="primary-button action-button" id="action-button" type="submit">Проверить <span aria-hidden="true">→</span></button>
+            <p class="form-hint" id="form-hint">Нажми Enter, даже если курсор находится в поле ввода.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="results hidden" id="results" aria-label="Итоги тренировки">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> ТРЕНИРОВКА ЗАВЕРШЕНА</div>
+      <h2>Все 164 — <em>готово.</em></h2>
+      <p class="results-copy" id="results-copy"></p>
+      <div class="results-cards">
+        <div><span>ВЕРНО ОБА</span><strong id="result-correct">0</strong><small>из 164 глаголов</small></div>
+        <div><span>С ОШИБКОЙ</span><strong id="result-mistakes">0</strong><small>можно повторить ниже</small></div>
+        <div><span>ТОЧНОСТЬ</span><strong id="result-percent">0%</strong><small>по двум формам</small></div>
+      </div>
+      <button class="primary-button" id="restart-button" type="button">Пройти заново <span aria-hidden="true">↗</span></button>
+      <div class="review hidden" id="review"><h3>Глаголы для повторения</h3><p>Твои ответы и правильные формы.</p><div class="review-list" id="review-list"></div></div>
+    </section>
+
+    <section class="unlearned hidden" id="unlearned" aria-label="Невыученные глаголы">
+      <div class="section-topline"><span>ЛИЧНЫЙ СПИСОК</span><span>Сохраняется в этом браузере</span></div>
+      <h2>Невыученные <em>глаголы.</em></h2>
+      <p class="unlearned-copy">Здесь появляются слова, которые ты отметил сам или в которых ошибся. Удаляй выученные слова и добавляй нужные из общего списка.</p>
+      <form id="add-unlearned-form" class="add-unlearned-form">
+        <label for="add-unlearned-input">Добавить глагол</label>
+        <div><input id="add-unlearned-input" type="text" list="verb-options" placeholder="Например, write" autocomplete="off" spellcheck="false"><button type="submit">Добавить</button></div>
+        <datalist id="verb-options"></datalist>
+        <p id="add-unlearned-message" class="list-message" aria-live="polite"></p>
+      </form>
+      <div class="unlearned-list" id="unlearned-list"></div>
+      <p class="empty-list hidden" id="empty-list">Список пока пуст. Отметь глагол во время тренировки или добавь его здесь.</p>
+      <button class="back-button" id="back-button" type="button">← Вернуться</button>
+    </section>
+  </main>
+
+  <div class="dictionary-toast hidden" id="dictionary-toast" role="dialog" aria-label="Словари"><div><strong id="dictionary-term"></strong><button id="dictionary-close" type="button" aria-label="Закрыть">×</button></div><p>Сначала посмотри объяснение на английском. Если нужно, открой перевод.</p><div class="dictionary-actions"><a id="dictionary-english" target="_blank" rel="noopener noreferrer">English definition ↗</a><a id="dictionary-russian" target="_blank" rel="noopener noreferrer">Русский перевод ↗</a></div></div>
+  <footer class="shell footer">Список и допустимые формы сверены с <a href="https://okuzeka.com/tools/irregular-verbs" target="_blank" rel="noopener noreferrer">Okuzeka</a>. Тренажёр работает прямо в браузере. <a href="vocabulary.html">Vocabulary →</a></footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "anglsite",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node verify.js && node verify-vocab.js && node verify-vocab-test.js && node verify-my-words.js && node verify-personal-ui.js && node verify-nouns.js",
+    "build": "node scripts/prepare-pages.mjs"
+  }
+}

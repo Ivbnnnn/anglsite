@@ -1,0 +1,14 @@
+.semantic-toolbar { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:0 0 18px; }
+.semantic-toolbar button, .backup-actions button, .backup-actions label { border:1px solid #7767b2; border-radius:8px; background:#31294d; color:#eee9ff; padding:10px 14px; font:inherit; font-size:12px; font-weight:700; cursor:pointer; }
+.semantic-toolbar button:hover, .backup-actions button:hover, .backup-actions label:hover { background:#463762; }
+.semantic-toolbar button:disabled { opacity:.55; cursor:wait; }
+.semantic-toolbar span { color:#aaa3bf; font-size:12px; line-height:1.5; }
+.semantic-list { list-style:none; padding:0; margin:8px 0 0; display:grid; gap:6px; }
+.semantic-list button { background:#29243d; border:1px solid #574878; border-radius:7px; color:#d8c9ff; padding:7px 9px; text-align:left; cursor:pointer; width:100%; }
+.map-detail h3 { color:#d7caff; font-size:13px; margin:22px 0 8px; }
+.backup-panel { margin-top:28px; border-top:1px solid #3d3654; padding-top:22px; }
+.backup-panel h3 { font-size:17px; margin:0 0 8px; }
+.backup-panel p { color:#aaa3bf; font-size:12px; line-height:1.5; }
+.backup-actions { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0; }
+.backup-actions input { position:absolute; width:1px; height:1px; opacity:0; }
+.backup-actions input:focus-visible + label { outline:2px solid #cdbaff; }

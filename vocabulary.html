@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11121f">
+  <title>Vocabulary by topic — Verb Practice</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="vocab.css">
+  <link rel="stylesheet" href="dark-theme.css">
+  <script defer src="vocab-data.js"></script>
+  <script defer src="vocab-extra.js"></script>
+  <script defer src="vocab.js"></script>
+  <script defer src="dictionary.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="index.html" aria-label="Verb Practice — главная"><span class="brand-mark">v<span>.</span></span><span>verb practice</span></a>
+      <nav class="main-nav" aria-label="Разделы сайта"><a href="index.html">Глаголы</a><a href="vocabulary.html" aria-current="page">Vocabulary</a><a href="vocab-test.html">Проверка</a><a href="nouns.html">Теория</a><a href="my-words.html">Мои слова</a><a href="word-map.html">Карта</a></nav>
+    </div>
+  </header>
+
+  <main class="shell vocab-main">
+    <section class="vocab-hero">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> ТЕМАТИЧЕСКАЯ ЛЕКСИКА</div>
+      <h1>Vocabulary <em>by topic.</em></h1>
+      <p>12 тем из пособия по лексике и грамматике — с расширением для IELTS. Сначала закрепи базовые выражения, затем переходи к точным сочетаниям и примерам в контексте.</p>
+      <div class="vocab-metrics"><span><strong id="topic-total">12</strong> тем</span><span><strong id="word-total">600</strong> слов и выражений</span><span><strong>EN → EN</strong> по Ctrl + клик</span></div>
+      <a class="primary-button vocab-test-link" href="vocab-test.html">Проверить знания <span aria-hidden="true">→</span></a>
+      <a class="topic-test-link" href="my-words.html">Добавить своё слово →</a>
+    </section>
+
+    <section class="topic-catalog" aria-label="Темы"><div class="catalog-heading"><h2>Выбери тему</h2><span>01 — 12</span></div><div class="topic-grid" id="topic-grid"></div></section>
+
+    <section class="topic-detail hidden" id="topic-detail" aria-label="Слова по теме">
+      <div class="topic-detail-header"><div><div class="topic-kicker" id="topic-kicker"></div><h2 id="topic-title"></h2><p id="topic-description"></p><a class="topic-test-link" id="topic-test-link" href="vocab-test.html">Проверить эту тему →</a></div><button class="close-topic" id="close-topic" type="button" aria-label="Закрыть тему">×</button></div>
+      <div class="topic-toolbar">
+        <label class="topic-search"><span aria-hidden="true">⌕</span><input id="word-search" type="search" placeholder="Найти слово или перевод…" autocomplete="off"></label>
+        <div class="topic-filters" role="group" aria-label="Фильтр лексики"><button class="active" type="button" data-filter="all">Все</button><button type="button" data-filter="core">Из книги</button><button type="button" data-filter="advanced">IELTS+</button></div>
+        <button class="reveal-button" id="toggle-translations" type="button" aria-pressed="false">Скрыть переводы</button>
+      </div>
+      <p class="dictionary-hint">Нажми на выражение, чтобы выбрать словарь. <kbd>Ctrl</kbd> + левый клик сразу откроет английское определение.</p>
+      <div class="word-list" id="word-list"></div>
+      <p class="no-words hidden" id="no-words">По этому запросу ничего не найдено.</p>
+      <aside class="speaking-prompt"><span>ВОПРОС ДЛЯ ПРАКТИКИ</span><p id="topic-prompt"></p><small>Попробуй ответить, используя 2–3 выражения из этой темы.</small></aside>
+    </section>
+  </main>
+
+  <div class="dictionary-toast hidden" id="dictionary-toast" role="dialog" aria-label="Словари"><div><strong id="dictionary-term"></strong><button id="dictionary-close" type="button" aria-label="Закрыть">×</button></div><p>Сначала посмотри объяснение на английском. Если нужно, открой перевод.</p><div class="dictionary-actions"><a id="dictionary-english" target="_blank" rel="noopener noreferrer">English definition ↗</a><a id="dictionary-russian" target="_blank" rel="noopener noreferrer">Русский перевод ↗</a></div></div>
+  <footer class="shell footer">Темы и базовая лексика: <em>Vocabulary and Grammar v2</em> (2023). Расширение и примеры составлены для этой страницы. <a href="https://ielts.org/take-a-test/preparation-resources/writing-test-resources" target="_blank" rel="noopener noreferrer">О лексике в IELTS ↗</a></footer>
+</body>
+</html>
