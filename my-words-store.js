@@ -41,5 +41,5 @@ const myWordsStore = (() => {
   function remove(id) { return save(load().filter((item) => item.id !== id)); }
   function suggestLocal(en) { return catalog.get(clean(en).toLocaleLowerCase()) || null; }
 
-  return { load, upsert, remove, suggestLocal, topics: vocabularyTopics.map(({ id, title }) => ({ id, title })) };
+  return { key, load, upsert, remove, suggestLocal, topics: vocabularyTopics.map(({ id, title }) => ({ id, title })) };
 })();

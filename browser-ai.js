@@ -53,7 +53,9 @@ const browserAI = (() => {
 
   async function embed(text, callback = () => {}) {
     if (!embeddingPromise) embeddingPromise = library().then(({ pipeline }) => pipeline(
-      'feature-extraction', 'Xenova/multilingual-e5-small', { progress_callback: progress('Смысловая модель', callback) }
+      'feature-extraction', 'Xenova/multilingual-e5-small', {
+        dtype: 'q8', progress_callback: progress('Смысловая модель', callback),
+      }
     )).catch((error) => { embeddingPromise = null; throw error; });
     const pipe = await embeddingPromise;
     const tensor = await pipe(`query: ${String(text).trim()}`, { pooling: 'mean', normalize: true });

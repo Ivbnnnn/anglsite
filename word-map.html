@@ -7,20 +7,55 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
   <title>Карта моих слов — Verb Practice</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="word-map.css">
   <link rel="stylesheet" href="dark-theme.css">
   <link rel="stylesheet" href="personal.css">
+  <link rel="stylesheet" href="word-map.css?v=2">
   <script defer src="vocab-data.js"></script>
   <script defer src="vocab-extra.js"></script>
-  <script defer src="my-words-store.js"></script>
-  <script defer src="browser-ai.js"></script>
-  <script defer src="word-map.js"></script>
+  <script defer src="my-words-store.js?v=2"></script>
+  <script defer src="browser-ai.js?v=2"></script>
+  <script defer src="word-projection.js"></script>
+  <script defer src="word-map.js?v=2"></script>
   <script defer src="dictionary.js"></script>
 </head>
 <body>
   <header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html" aria-label="Verb Practice — главная"><span class="brand-mark">v<span>.</span></span><span>verb practice</span></a><nav class="main-nav" aria-label="Разделы сайта"><a href="index.html">Глаголы</a><a href="vocabulary.html">Vocabulary</a><a href="vocab-test.html">Проверка</a><a href="nouns.html">Теория</a><a href="my-words.html">Мои слова</a><a href="word-map.html" aria-current="page">Карта</a></nav></div></header>
-  <main class="shell map-main"><div class="eyebrow"><span class="eyebrow-dot"></span> ТЕМАТИЧЕСКИЕ ВЕКТОРЫ</div><div class="map-heading"><div><h1>Карта <em>слов.</em></h1><p>Все сохранённые выражения распределены по выбранным темам. Нажми на слово, чтобы увидеть детали и открыть словарь.</p></div><a class="primary-button" href="my-words.html">Добавить слово <span aria-hidden="true">↗</span></a></div><div class="map-toolbar"><input id="map-search" type="search" placeholder="Найти слово или перевод…" aria-label="Поиск на карте"><select id="map-filter" aria-label="Тематический вектор"><option value="all">Все векторы</option></select><span id="map-count">0 слов</span></div><div class="semantic-toolbar"><button id="semantic-build" type="button">Найти похожие по смыслу</button><span id="semantic-status" role="status" aria-live="polite">Модель загружается только по нажатию. При первом запуске потребуется интернет.</span></div><div class="map-layout"><div class="map-frame" id="map-frame"><svg id="word-map" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Карта сохранённых слов по темам"></svg><div class="map-empty hidden" id="map-empty">Пока здесь нет слов. <a href="my-words.html">Добавь первое выражение →</a></div></div><aside class="map-detail" id="map-detail"><span>ВЫБЕРИ УЗЕЛ</span><h2>Твоё слово появится здесь</h2><p>Нажми на любой узел с английским выражением.</p></aside></div><div class="map-hint">Карту можно прокручивать по горизонтали и вертикали. Чтобы изменить ветвь слова, поменяй его тему в разделе «Мои слова».</div></main>
+  <main class="shell map-main">
+    <div class="map-heading">
+      <div>
+        <h1>Карта <em>слов.</em></h1>
+        <p>Посмотри, как твои слова и фразы расположены по смыслу на плоскости X–Y.</p>
+      </div>
+      <a class="primary-button" href="my-words.html">Добавить слово <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="map-toolbar">
+      <input id="map-search" type="search" placeholder="Найти слово или перевод…" aria-label="Поиск на карте">
+      <select id="map-filter" aria-label="Фильтр по теме"><option value="all">Все темы</option></select>
+      <span id="map-count">0 слов</span>
+    </div>
+    <div class="semantic-toolbar">
+      <button id="semantic-build" type="button" disabled>Построить карту</button>
+      <span id="semantic-status" role="status">При первом построении браузер скачает модель.</span>
+    </div>
+    <div class="map-layout">
+      <div class="map-chart">
+        <div class="map-frame">
+          <svg id="word-map" viewBox="0 0 800 510" role="group" aria-label="Карта смысловых векторов по осям X и Y"></svg>
+          <div class="map-empty" id="map-empty">
+            <p id="map-empty-text">Пока здесь нет слов.</p>
+            <a id="map-add-first" href="my-words.html">Добавить первое слово →</a>
+          </div>
+        </div>
+        <div class="map-chart-tools">
+          <select id="map-point" aria-label="Выбрать слово на карте" disabled><option value="">Выбрать слово</option></select>
+          <ul class="map-legend" id="map-legend" aria-label="Цвета тем"></ul>
+        </div>
+        <p class="map-hint">X и Y — две компоненты PCA. Расстояние на графике передаёт сходство приблизительно. Цвет показывает тему.</p>
+      </div>
+      <aside class="map-detail" id="map-detail" aria-label="Выбранное слово"></aside>
+    </div>
+  </main>
   <div class="dictionary-toast hidden" id="dictionary-toast" role="dialog" aria-label="Словари"><div><strong id="dictionary-term"></strong><button id="dictionary-close" type="button" aria-label="Закрыть">×</button></div><p>Сначала посмотри объяснение на английском. Если нужно, открой перевод.</p><div class="dictionary-actions"><a id="dictionary-english" target="_blank" rel="noopener noreferrer">English definition ↗</a><a id="dictionary-russian" target="_blank" rel="noopener noreferrer">Русский перевод ↗</a></div></div>
-  <footer class="shell footer">Карта — визуальный макет тематических ветвей. Слова хранятся в этом браузере.</footer>
+  <footer class="shell footer">Слова и построенная карта хранятся в этом браузере.</footer>
 </body>
 </html>

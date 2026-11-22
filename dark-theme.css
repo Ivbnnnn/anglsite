@@ -68,11 +68,6 @@ input::placeholder,textarea::placeholder{color:#9795b3}
 .topic-test-link{color:#fff}
 .topic-search,.reveal-button,.word-tag,.speaking-prompt,.map-entry,.own-empty{border-color:var(--border)}
 .own-row small,.own-count,.collection-heading h2 span,.map-toolbar span{color:var(--dim)}
-.map-frame{background-color:#171829;background-image:radial-gradient(#383854 1px,transparent 1px);border-color:var(--border)}
-.map-edges path{stroke:#777299}.map-edges .word-line{stroke:#565371}
-.center-node rect{fill:#775dc4}.center-node text{fill:#fff}
-.branch-node rect{fill:#3c365d;stroke:#756ba5}.branch-node text{fill:#e9dfff}
-.word-node rect{fill:#252640;stroke:#5a587f}.word-node:hover rect,.word-node:focus rect{fill:#44406c;stroke:#ab93eb}.word-node text{fill:#eee9ff}
 
 /* Text that previously relied on pale card backgrounds. */
 .verb,.translation,.question-caption,.mini-stats,.input-group label,.topic-option strong,.mode-options strong,.vocab-metrics,.setup-heading>span,.topic-en,.topic-detail-header p,.quiz-prompt-card p,.quiz-answer-card label,.own-editor label,.unlearned-copy,.unlearned-row span,.unlearned-row small,.nouns-setup legend,.nouns-setup label,.nouns-instruction{color:var(--text)}
