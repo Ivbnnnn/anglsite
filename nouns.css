@@ -1,2 +1,38 @@
 .nouns-main{padding-bottom:100px}.nouns-hero{padding:83px 0 82px;border-bottom:1px solid #e1e6de}.nouns-hero h1{font-size:clamp(48px,7vw,86px);line-height:1.07;letter-spacing:-.075em;color:#233b2c;margin:22px 0}.nouns-hero h1 em{font-style:normal;color:#568667}.nouns-hero>p{max-width:650px;font-size:18px;color:#647369;line-height:1.75}.nouns-hero-actions,.nouns-result-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:29px}.nouns-outline{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#f3f8f0;border:1px solid #cddfc9;border-radius:11px;color:#336448;padding:15px 20px;font-weight:700;min-height:53px}.nouns-outline:hover{background:#e7f1e4}.nouns-theory,.nouns-practice{padding-top:76px}.nouns-heading{margin-bottom:32px}.nouns-heading h2{font-size:clamp(34px,4vw,52px);letter-spacing:-.055em;color:#243c2d;margin:16px 0 10px}.nouns-heading>p{color:#708076;line-height:1.65;margin:0;max-width:720px}.rule-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.rule-card{background:#fff;border:1px solid #e2e9df;border-radius:17px;padding:25px;display:flex;flex-direction:column;min-height:280px;box-shadow:0 10px 30px #1b432008}.rule-number{color:#5c8965;font-size:10px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}.rule-card h3{font-size:23px;letter-spacing:-.045em;color:#294e37;margin:16px 0 10px}.rule-card p{font-size:14px;line-height:1.67;color:#5e7063;margin:0 0 24px}.rule-card i{color:#345a40}.rule-example{margin-top:auto;background:#edf5eb;border-radius:9px;padding:12px 14px;color:#315b3d;font-size:13px;line-height:1.5}.nouns-note{margin-top:20px;padding:18px 22px;background:#f0f0e8;border-left:3px solid #8daf77;border-radius:9px;font-size:14px;line-height:1.65;color:#59695a}.nouns-practice{border-top:1px solid #e1e6de;margin-top:77px}.nouns-setup,.nouns-results{background:#fff;border:1px solid #e1e8df;border-radius:18px;padding:32px;max-width:790px;box-shadow:0 12px 35px #183a210a}.nouns-setup fieldset{padding:0;margin:0 0 20px;border:0}.nouns-setup legend{font-weight:800;color:#31573d;margin-bottom:16px}.nouns-setup label{display:flex;align-items:center;gap:11px;padding:9px 0;color:#4d6252;font-size:15px}.nouns-setup input{width:17px;height:17px;accent-color:#327753}.nouns-setup p{color:#aa614b;font-size:13px}.nouns-quiz{max-width:790px}.nouns-question{background:#fff;border:1px solid #e1e8df;border-radius:18px;padding:34px;box-shadow:0 12px 35px #183a210a}.nouns-instruction{color:#698b70;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin:0 0 28px}.nouns-sentence{font-size:clamp(24px,3vw,35px);font-weight:750;letter-spacing:-.04em;line-height:1.8;color:#274232}.nouns-sentence input{display:inline-block;width:170px;max-width:100%;height:48px;padding:2px 10px;border:0;border-bottom:2px solid #669d74;background:#f1f7ee;border-radius:5px 5px 0 0;color:#244b33;font-size:inherit;font-weight:inherit;text-align:center;outline:0;vertical-align:baseline}.nouns-sentence input:focus{box-shadow:0 0 0 3px #9ec99e70}.nouns-sentence input.is-correct{background:#e4f5e1;border-bottom-color:#54a35f}.nouns-sentence input.is-wrong{background:#fff0eb;border-bottom-color:#ca7964}.nouns-feedback{min-height:52px;color:#6a7a6c;font-size:14px;line-height:1.5;margin:20px 0 12px}.nouns-feedback.correct{color:#36734c}.nouns-feedback.wrong{color:#a65d48}.nouns-quiz>.nouns-outline{margin-top:20px}.nouns-results h3{font-size:36px;letter-spacing:-.05em;color:#294e37;margin:18px 0 4px}.nouns-results>p{font-size:20px;color:#647768}.nouns-review{display:grid;gap:10px;margin-top:25px}.nouns-review article{border:1px solid #e4eade;border-radius:10px;background:#f8faf6;padding:15px}.nouns-review strong{color:#285840}.nouns-review p{color:#68776b;font-size:13px;line-height:1.5;margin:7px 0 0}@media(max-width:900px){.rule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.nouns-hero{padding:59px 0}.nouns-theory,.nouns-practice{padding-top:52px}.rule-grid{grid-template-columns:1fr}.rule-card{min-height:0}.nouns-setup,.nouns-results,.nouns-question{padding:23px}.nouns-sentence input{width:132px;height:43px}.nouns-hero>p{font-size:16px}}
 .theory-contents{display:flex;gap:9px;flex-wrap:wrap;margin:-5px 0 30px}.theory-contents a{display:inline-block;text-decoration:none;color:#356947;background:#eaf3e7;border:1px solid #d9e8d5;border-radius:99px;padding:8px 13px;font-size:12px;font-weight:700}.theory-contents a:hover{background:#dcebd8}.theory-chapter{max-width:940px;margin:58px auto 0;padding:0 4px;scroll-margin-top:30px}.chapter-index{font-size:11px;font-weight:800;letter-spacing:.13em;color:#5e8965}.theory-chapter h3{font-size:clamp(29px,3.5vw,42px);letter-spacing:-.055em;color:#284b36;margin:12px 0 19px}.theory-chapter p{font-size:16px;line-height:1.82;color:#4d6052;max-width:800px;margin:16px 0}.theory-chapter i{color:#285e40}.grammar-table-wrap{overflow-x:auto;margin:25px 0}.grammar-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #dfe8dc;border-radius:12px;overflow:hidden;font-size:14px;line-height:1.5}.grammar-table th,.grammar-table td{text-align:left;vertical-align:top;border-bottom:1px solid #e6ece4;padding:15px 17px}.grammar-table th{color:#3a6749;background:#eaf3e8;font-size:12px;letter-spacing:.04em}.grammar-table tr:last-child td{border-bottom:0}.grammar-table td:first-child{font-weight:700;color:#3e5946}.example-line{display:flex;flex-wrap:wrap;gap:9px 20px;align-items:baseline;background:#f0f5ec;border-left:3px solid #75a873;border-radius:8px;padding:17px 20px;margin:24px 0;color:#965f4e}.example-line strong{color:#2e6a46}.example-line small{flex-basis:100%;font-size:13px;line-height:1.6;color:#667566}.nouns-setup .session-size-label{font-weight:800;color:#31573d;margin:8px 0 7px}.nouns-setup select{width:min(100%,360px);height:47px;border:1px solid #d6e4d2;border-radius:9px;background:#f9fcf8;color:#34513e;padding:0 12px;font:inherit}.nouns-setup select:focus-visible{outline:3px solid #9cc873;outline-offset:2px}@media(max-width:620px){.theory-chapter{margin-top:43px}.theory-chapter p{font-size:15px}.grammar-table{min-width:590px}.grammar-table th,.grammar-table td{padding:12px}.theory-contents{gap:7px}}
+.noun-reference-group {
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.noun-reference-group summary {
+  padding: 14px 16px;
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.noun-reference-group summary:hover, .grammar-source a {
+  color: var(--link);
+}
+
+.noun-reference-group .grammar-table-wrap {
+  margin: 0;
+}
+
+.noun-reference-group table {
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.noun-reference-group td:nth-child(2) {
+  min-width: 7em;
+}
+
+.noun-reference-group small {
+  display: block;
+  margin-top: 5px;
+}

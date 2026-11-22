@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 
-let selectedTypes = ['agreement', 'forms', 'usage', 'quantifiers'];
+let selectedTypes = ['agreement', 'forms', 'usage', 'quantifiers', 'numerals', 'number', 'participles'];
 function element() {
   const classes = new Set();
   return {
@@ -21,14 +21,26 @@ const ids = ['nouns-start', 'nouns-setup', 'nouns-setup-message', 'nouns-results
   'nouns-category', 'nouns-counter', 'nouns-progress', 'nouns-progress-fill', 'nouns-instruction',
   'nouns-before', 'nouns-after', 'nouns-answer', 'nouns-feedback', 'nouns-action', 'nouns-form',
   'nouns-exit', 'nouns-new', 'nouns-retry', 'nouns-score', 'nouns-review', 'nouns-session-size', 'nouns-total', 'nouns-order'];
+ids.push('noun-reference');
 const nodes = Object.fromEntries(ids.map((id) => [id, element()]));
 nodes['nouns-session-size'].value = 'all';
 const context = vm.createContext({ document: { getElementById: (id) => nodes[id], createElement: element } });
-vm.runInContext(fs.readFileSync('practice-order.js', 'utf8'), context);
-vm.runInContext(fs.readFileSync('nouns.js', 'utf8'), context);
+for (const file of ['practice-order.js', 'noun-reference.js', 'noun-grammar.js', 'nouns.js']) {
+  vm.runInContext(fs.readFileSync(file, 'utf8'), context);
+}
 const questions = vm.runInContext('nounQuestions', context);
 assert.ok(questions.length >= 120);
-assert.equal(new Set(questions.map((q) => q.type)).size, 4);
+assert.equal(new Set(questions.map((q) => q.type)).size, selectedTypes.length);
+const groups = vm.runInContext('nounReferenceGroups', context);
+assert.equal(nodes['noun-reference'].children.length, groups.length);
+const targets = new Map();
+for (const { question, word } of groups.flatMap((group) => group.entries)) {
+  assert.ok(questions.includes(question) && question.after !== undefined && question.answers.every(Boolean), word);
+  targets.set(word, (targets.get(word) || 0) + 1);
+}
+assert.ok(Math.max(...targets.values()) <= 2);
+assert.equal(targets.get('aircraft'), 1);
+assert.equal(new Set(questions.map((q) => `${q.before}_${q.after}`)).size, questions.length);
 assert.equal(Number(nodes['nouns-total'].textContent), questions.length);
 nodes['nouns-start'].handlers.click();
 assert.equal(nodes['nouns-counter'].textContent, `1 / ${questions.length}`);
@@ -41,17 +53,19 @@ const submit = () => nodes['nouns-form'].handlers.submit({ preventDefault() {} }
 submit();
 assert.match(nodes['nouns-feedback'].textContent, /Впиши ответ/);
 for (let index = 0; index < questions.length; index++) {
-  nodes['nouns-answer'].value = index === 0 ? 'is' : questions[index].answers[0].toUpperCase();
+  nodes['nouns-answer'].value = index === 0 ? 'incorrect' : questions[index].answers[0].toUpperCase();
   submit(); // Enter in the input checks the answer.
   assert.equal(nodes['nouns-answer'].readOnly, true);
-  if (index === 0) assert.match(nodes['nouns-feedback'].textContent, /Правильно: are/);
-  submit(); // The next Enter advances (or opens results).
+  if (index === 0) assert.ok(nodes['nouns-feedback'].textContent.includes(`Правильно: ${questions[0].answers[0]}`));
+  let prevented = false;
+  nodes['nouns-form'].handlers.keydown({ target: nodes['nouns-answer'], key: 'Enter', preventDefault() { prevented = true; } });
+  assert.ok(prevented);
 }
 assert.match(nodes['nouns-score'].textContent, new RegExp(`${questions.length - 1} из ${questions.length}`));
 assert.equal(nodes['nouns-review'].children.length, 1);
 nodes['nouns-retry'].handlers.click();
 assert.equal(nodes['nouns-counter'].textContent, '1 / 1');
-nodes['nouns-answer'].value = ' are ';
+nodes['nouns-answer'].value = ` ${questions[0].answers[0]} `;
 submit();
 submit();
 assert.match(nodes['nouns-score'].textContent, /1 из 1/);
@@ -61,11 +75,14 @@ nodes['nouns-session-size'].value = '20';
 nodes['nouns-start'].handlers.click();
 assert.equal(nodes['nouns-counter'].textContent, '1 / 20');
 nodes['nouns-exit'].handlers.click();
-selectedTypes = ['quantifiers'];
-nodes['nouns-session-size'].value = 'all';
-nodes['nouns-start'].handlers.click();
-assert.equal(nodes['nouns-counter'].textContent, `1 / ${questions.filter((q) => q.type === 'quantifiers').length}`);
-nodes['nouns-exit'].handlers.click();
+for (const type of ['quantifiers', 'numerals', 'number', 'participles']) {
+  selectedTypes = [type];
+  nodes['nouns-session-size'].value = 'all';
+  nodes['nouns-start'].handlers.click();
+  assert.equal(nodes['nouns-counter'].textContent, `1 / ${questions.filter((q) => q.type === type).length}`);
+  assert.ok(vm.runInContext('nounSession', context).every((q) => q.type === type));
+  nodes['nouns-exit'].handlers.click();
+}
 selectedTypes = [];
 nodes['nouns-start'].handlers.click();
 assert.match(nodes['nouns-setup-message'].textContent, /Выбери/);
@@ -89,4 +106,4 @@ assert.match(fs.readFileSync('vocab-test.html', 'utf8'), /id="source-book"/);
 assert.match(fs.readFileSync('vocab-test.html', 'utf8'), /id="source-ielts"/);
 assert.match(fs.readFileSync('nouns.html', 'utf8'), /href="noun-plurals.html"/);
 assert.match(fs.readFileSync('nouns.html', 'utf8'), /href="rise-raise.html"/);
-console.log(`PASS: ${questions.length} noun questions, short and filtered sessions, typed answers, Enter, results, retry, dark theme links`);
+console.log(`PASS: ${targets.size} noun targets, ${questions.length} grammar questions, balanced coverage, topic filters, Enter, results and retry`);
