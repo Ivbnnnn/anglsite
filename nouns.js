@@ -79,6 +79,7 @@ const nounTypeNames = {
   quantifiers: 'СЛОВА КОЛИЧЕСТВА',
   numerals: 'ЧИСЛИТЕЛЬНЫЕ',
   number: 'A NUMBER OF / THE NUMBER OF',
+  amount: 'NUMBER OF / AMOUNT OF',
   participles: 'ПРИЧАСТИЯ',
 };
 let nounSession = [];

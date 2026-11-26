@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 
-let selectedTypes = ['agreement', 'forms', 'usage', 'quantifiers', 'numerals', 'number', 'participles'];
+let selectedTypes = ['agreement', 'forms', 'usage', 'quantifiers', 'numerals', 'number', 'amount', 'participles'];
 function element() {
   const classes = new Set();
   return {
@@ -75,7 +75,7 @@ nodes['nouns-session-size'].value = '20';
 nodes['nouns-start'].handlers.click();
 assert.equal(nodes['nouns-counter'].textContent, '1 / 20');
 nodes['nouns-exit'].handlers.click();
-for (const type of ['quantifiers', 'numerals', 'number', 'participles']) {
+for (const type of ['quantifiers', 'numerals', 'number', 'amount', 'participles']) {
   selectedTypes = [type];
   nodes['nouns-session-size'].value = 'all';
   nodes['nouns-start'].handlers.click();

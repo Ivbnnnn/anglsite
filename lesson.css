@@ -1,0 +1,15 @@
+.grammar-lesson { padding-bottom: 80px; }
+.grammar-lesson > .theory-back { margin-top: 32px; }
+.grammar-lesson .nouns-hero { padding: 22px 0 46px; }
+.grammar-lesson .nouns-hero h1 { font-size: clamp(42px, 7vw, 74px); }
+.grammar-lesson .theory-contents { margin: 25px 0 0; }
+.grammar-lesson .theory-chapter { margin-inline: 0; }
+.grammar-lesson .nouns-practice h2 { font-size: clamp(32px, 5vw, 48px); letter-spacing: -.04em; margin: 0 0 12px; }
+.grammar-lesson .nouns-practice > p,
+.grammar-lesson .nouns-setup .lesson-total { color: var(--muted); line-height: 1.6; }
+.grammar-lesson .lesson-zero { min-height: 0; margin-top: 14px; padding: 6px 11px; font-size: 13px; }
+.grammar-lesson .lesson-zero:disabled { opacity: .55; cursor: default; }
+.grammar-lesson .lesson-progress { width: 100%; height: 8px; margin: 15px 0 24px; accent-color: #ba9ff5; }
+.grammar-lesson .grammar-table td strong { color: var(--text); }
+.lesson-rules { max-width: 800px; padding-left: 24px; color: var(--muted); line-height: 1.75; }
+.lesson-rules li + li { margin-top: 10px; }

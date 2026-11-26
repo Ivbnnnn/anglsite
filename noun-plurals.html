@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="practice-order.css">
   <script defer src="practice-order.js"></script>
   <script defer src="noun-reference.js"></script>
-  <script defer src="noun-grammar.js"></script>
-  <script defer src="nouns.js"></script>
+  <script defer src="noun-grammar.js?v=2"></script>
+  <script defer src="nouns.js?v=2"></script>
 </head>
 <body>
   <header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html" aria-label="Verb Practice — главная"><span class="brand-mark">v<span>.</span></span><span>verb practice</span></a><nav class="main-nav" aria-label="Разделы сайта"><a href="index.html">Глаголы</a><a href="vocabulary.html">Vocabulary</a><a href="vocab-test.html">Проверка</a><a href="nouns.html" aria-current="page">Теория</a><a href="my-words.html">Мои слова</a><a href="word-map.html">Карта</a></nav></div></header>
@@ -30,7 +30,7 @@
       <nav class="theory-contents" aria-label="Темы теории">
         <a href="#countable">Исчисляемость</a><a href="#spelling">Окончания</a>
         <a href="#agreement">Согласование</a><a href="#special">Справочник исключений</a>
-        <a href="#numerals">Числительные</a><a href="#number">A / the number of</a>
+        <a href="#numerals">Числительные</a><a href="#number">A / the number of</a><a href="#number-amount">Number / amount</a>
         <a href="#participles">Причастия I и II</a><a href="#practice">Практика</a>
       </nav>
 
@@ -111,6 +111,25 @@
         <p class="grammar-source"><a href="https://serveislinguistics.uvic.cat/recursos/comunicacio-oral-i-escrita/interuniversity-style-guide-for-writing-institutional-texts-in-english/4th-ed/7-singular-and-plural/">Interuniversity Style Guide — Singular and plural</a></p>
       </article>
 
+      <article class="theory-chapter" id="number-amount">
+        <h3>Number of / amount of</h3>
+        <p>Выбирай <b>number of</b>, когда можно посчитать отдельные единицы. Выбирай <b>amount of</b>, когда речь о массе, объёме или общем количестве неисчисляемого. Само слово «количество» по-русски подходит в обоих случаях.</p>
+        <div class="grammar-table-wrap"><table class="grammar-table">
+          <thead><tr><th>Что сравниваем</th><th>Number of + исчисляемое</th><th>Amount of + неисчисляемое</th></tr></thead>
+          <tbody>
+            <tr><td>Деньги</td><td><i lang="en">the number of coins</i> — сколько монет</td><td><i lang="en">the amount of money</i> — какая сумма</td></tr>
+            <tr><td>Советы</td><td><i lang="en">the number of suggestions</i> — сколько предложений</td><td><i lang="en">the amount of advice</i> — сколько советов как общий объём</td></tr>
+            <tr><td>Транспорт</td><td><i lang="en">the number of cars</i> — сколько машин</td><td><i lang="en">the amount of traffic</i> — интенсивность движения</td></tr>
+            <tr><td>Вода</td><td><i lang="en">the number of bottles</i> — сколько бутылок</td><td><i lang="en">the amount of water</i> — сколько воды</td></tr>
+            <tr><td>Оборудование</td><td><i lang="en">the number of pieces of equipment</i> — сколько единиц оборудования</td><td><i lang="en">the amount of equipment</i> — сколько оборудования в целом</td></tr>
+          </tbody>
+        </table></div>
+        <p>У некоторых слов счётность зависит от смысла. <i lang="en">The amount of paper we used</i> — сколько бумаги израсходовали. <i lang="en">The number of papers we reviewed</i> — сколько статей проверили. Если нужно назвать отдельные элементы, добавь единицу счёта. <i lang="en">The amount of information</i> — объём информации, <i lang="en">the number of pieces of information</i> — число отдельных сведений.</p>
+        <p>В нейтральном и академическом английском говори <i lang="en">a large number of people</i> и <i lang="en">a large amount of time</i>. Сказуемое в <i lang="en">A large amount of data has been collected</i> согласуется с <i lang="en">amount</i>. В <i lang="en">Large amounts of data have been collected</i> главным словом становится <i lang="en">amounts</i>. С <i lang="en">a number of people</i> используют множественное число, потому что оборот означает «несколько человек».</p>
+        <p><i lang="en">Quantity of</i> — более формальный вариант, который подходит для обоих типов. <i lang="en">Large quantities of grain</i> — большие объёмы зерна, <i lang="en">a large quantity of bottles</i> — большая партия бутылок.</p>
+        <p class="grammar-source"><a href="https://dictionary.cambridge.org/grammar/british-grammar/amount-of-number-of-or-quantity-of">Cambridge Grammar Today — Amount of, number of or quantity of?</a></p>
+      </article>
+
       <article class="theory-chapter" id="participles">
         <h3>Причастия I и II</h3>
         <p>Причастия — неличные формы глагола. Названия <i>present participle</i> и <i>past participle</i> сами по себе не указывают время. Сравни <i>She was reading yesterday</i> и <i>The report will be published tomorrow</i>.</p>
@@ -138,6 +157,7 @@
           <label><input type="checkbox" value="quantifiers" checked> Many / much, fewer / less</label>
           <label><input type="checkbox" value="numerals" checked> Числительные: thousand / thousands и другие</label>
           <label><input type="checkbox" value="number" checked> A number of / the number of</label>
+          <label><input type="checkbox" value="amount" checked> Number of / amount of</label>
           <label><input type="checkbox" value="participles" checked> Причастия I и II</label>
         </fieldset>
         <label class="session-size-label" for="nouns-session-size">Длина тренировки</label>

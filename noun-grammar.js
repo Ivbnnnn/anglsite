@@ -70,8 +70,30 @@ _ number of tickets sold reached 500.|the|Здесь the number of — точн�
 _ number of residents have signed the letter.|a|A number of residents — несколько жителей.|Вставь a или the.
 A large number of orders _ been delayed.|have|Large не меняет модель: A large number of + множественное число.|Вставь has или have.
 The number of late orders _ fallen since May.|has|Падает количество, поэтому has.|Вставь has или have.
-The _ of rainfall varies by region.|amount|Rainfall здесь неисчисляемое. Обычно говорят the amount of rainfall.|Выбери number или amount.
 The number of _ rose after the deadline was extended.|applications|После the number of здесь нужно исчисляемое существительное во множественном числе.|Вставь форму слова application.`,
+  },
+  {
+    type: 'amount', prompt: 'Выбери number или amount.',
+    rows: `The _ of rainfall varies by region.|amount|Rainfall неисчисляемое. Здесь нужен объём осадков.
+The _ of rainy days fell last year.|number|Дождливые дни можно посчитать.
+We tracked the _ of water used each month.|amount|Вода неисчисляема. Измеряем расход воды.
+They counted the _ of bottles sold during the event.|number|Бутылки можно посчитать поштучно.
+We paid the same _ of money for both tickets.|amount|Money неисчисляемое. Речь о сумме.
+The _ of coins in each bag was recorded.|number|Coins — отдельные считаемые предметы.
+The _ of traffic increases near the junction.|amount|Traffic — неисчисляемое слово.
+The _ of cars on this road has doubled.|number|Cars можно посчитать. Речь о количестве машин.
+Reducing the _ of paper we use saves money.|amount|Paper здесь означает материал.
+The journal reported the _ of papers it published.|number|Papers здесь означает отдельные статьи.
+We were surprised by the _ of advice they gave us.|amount|Advice неисчисляемое слово.
+The _ of suggestions received has increased.|number|Suggestions можно посчитать.
+We do not have enough space for this _ of equipment.|amount|Equipment неисчисляемое. Имеется в виду оборудование в целом.
+The _ of pieces of equipment in the lab has dropped.|number|Pieces — отдельные единицы оборудования.
+We measured the _ of time spent on each task.|amount|Time здесь означает длительность.
+The _ of hours spent on each task varied.|number|Hours — отдельные единицы времени.
+The _ of waste produced per household fell.|amount|Waste в этом контексте неисчисляемое.
+The survey counted the _ of households that recycled.|number|Подсчитываем домохозяйства, а не массу отходов.
+A large amount of information _ missing from the file.|is|Главное слово amount в единственном числе.|Вставь is или are.
+Large amounts of information _ still being processed.|are|Главное слово amounts во множественном числе.|Вставь is или are.`,
   },
   {
     type: 'participles', prompt: 'Впиши форму глагола из подсказки.',
